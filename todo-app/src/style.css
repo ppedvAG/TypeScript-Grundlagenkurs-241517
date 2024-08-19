@@ -45,6 +45,21 @@ form, ul > li {
   grid-gap: 1rem;
 }
 
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.important::before {
+  content: '❗';
+  color: red;
+}
+
+.low::before {
+  content: ' ⇩ ';
+  color: limegreen;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
