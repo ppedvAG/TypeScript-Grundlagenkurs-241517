@@ -37,6 +37,8 @@ const labelInput = createElement(form, 'text', 'Komma separierte Liste');
 
 createElement(form, 'label', 'Priorität');
 const prioNumber = createElement(form, 'number', 'Priorität eingeben');
+prioNumber.min = '0';
+prioNumber.max = '2';
 
 createElement(form, 'br');
 const submitButton = <HTMLButtonElement>createElement(form, 'button', 'Neue Aufgabe');
