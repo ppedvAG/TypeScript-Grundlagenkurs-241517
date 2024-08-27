@@ -52,9 +52,10 @@
 
 ## M007 | ECMAScript
 
--   [ ] Promises
--   [ ] async/await
--   [ ] fetch API
+-   [x] Callbacks
+-   [x] Promises
+-   [x] async/await
+-   [x] fetch API
 
 ## M008 | FEHLERSUCHE
 

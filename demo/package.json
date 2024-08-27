@@ -2,7 +2,7 @@
   "name": "typescript-grundlagenkurs-241517",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tsc && node dist/M006-OOP/index.js",
+    "dev": "tsc && node dist/M007-Async/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/luxon": "^3.4.2",
+    "@types/node": "^22.5.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {
