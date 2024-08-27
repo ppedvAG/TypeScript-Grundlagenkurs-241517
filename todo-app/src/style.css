@@ -17,6 +17,7 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  transition: all 0.25s;
 }
 a:hover {
   color: #535bf2;
@@ -45,6 +46,25 @@ form, ul > li {
   grid-gap: 1rem;
 }
 
+ul > li {
+  grid-template-columns: auto 1fr auto;
+}
+
+ul > li > button {
+  grid-column: 3;
+  background-color: transparent;
+  border: 0;
+}
+
+ul > li > button:hover {
+  color: red;
+}
+
+.due {
+  color: red;
+  font-weight: 500;
+}
+
 .completed {
   text-decoration: line-through;
   color: gray;
@@ -60,11 +80,35 @@ form, ul > li {
   color: limegreen;
 }
 
+.label-group {
+  padding: .2em .8em; 
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+
+.label-group > .label {        
+    display: inline-block;
+    margin: .3rem;
+    padding: .2rem .6rem;
+    background-color: color-mix(in srgb, var(--primary) 5%, transparent);
+    color: var(--primary);
+    padding-inline: 0.75rem;
+    padding-block: 0.375rem;
+    border-radius: 2.75rem;
+    border: 0;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.4rem;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
 button {
@@ -76,7 +120,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s;
 }
 button:hover {
   border-color: #646cff;
