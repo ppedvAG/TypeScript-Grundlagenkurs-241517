@@ -45,9 +45,10 @@
 
 ## M006 | OOP [Classes](https://www.typescriptlang.org/docs/handbook/2/classes.html)
 
--   [ ] namespaces, classes
--   [ ] heritage, override
--   [ ] interfaces, duck typing
+-   [x] namespaces, classes
+-   [x] Vererbung und override
+-   [x] "emulierte" Klassen mit create-functions
+-   [x] interfaces und duck typing
 
 ## M007 | ECMAScript
 
