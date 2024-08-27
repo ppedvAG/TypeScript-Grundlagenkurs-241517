@@ -1,5 +1,6 @@
 import { InputType, Task, inputTypes } from '../types/task.types';
-import { addTaskItem, isDued, fullTitle, priorityFromNumber } from './task.service';
+import TaskItem from './task.model';
+import StorageService from './storage.service';
 
 export function createElement<T>(parent: HTMLElement, type: InputType, placeholder?: string): HTMLInputElement;
 export function createElement<K extends keyof HTMLElementTagNameMap>(
@@ -58,9 +59,7 @@ export function drawForm(form: HTMLFormElement, list: HTMLUListElement) {
         // was einen Server Request ausloest
         e.preventDefault();
 
-        const priority = priorityFromNumber(prioNumber.valueAsNumber);
-        const task = addTaskItem(taskInput.value, dueInput.valueAsDate, labelInput.value, priority);
-        drawTaskItem(task, priority);
+        addTask(taskInput.value, dueInput.valueAsDate, prioNumber.valueAsNumber, labelInput.value);
 
         form.reset();
         submitButton.disabled = true;
@@ -70,12 +69,22 @@ export function drawForm(form: HTMLFormElement, list: HTMLUListElement) {
         submitButton.disabled = !taskInput.value;
     });
 
-    function drawTaskItem(task: Task, priority: string) {
+    const storage = new StorageService<Task>();
+    storage.loadItems().map(TaskItem.fromTask).forEach(drawTaskItem);
+
+    function addTask(taskInput: string, dueInput: Date | null, prioNumber: number, labelInput: string) {
+        const task = new TaskItem(taskInput, dueInput ?? undefined, prioNumber, labelInput.split(','));
+        storage.setItem(task);
+        drawTaskItem(task);
+    }
+
+    function drawTaskItem(task: TaskItem) {
         const listItem = createElement(list, 'li');
         const checkbox = createElement(listItem, 'checkbox');
         const div = createElement(listItem, 'div');
-        const title = createElement(div, 'span', fullTitle(task));
-        title.classList.add(priority);
+
+        const title = createElement(div, 'div', task.fullTitle);
+        title.classList.add(task.priority);
 
         const labels = createElement(div, 'div');
         labels.classList.add('label-group');
@@ -83,7 +92,13 @@ export function drawForm(form: HTMLFormElement, list: HTMLUListElement) {
             createElement(labels, 'span', label).classList.add('label');
         });
 
-        if (isDued(task)) {
+        const remove = createElement(listItem, 'button', '🗑');
+        remove.addEventListener('click', function () {
+            storage.deleteItem(task.id);
+            list.removeChild(listItem);
+        });
+
+        if (task.isDued) {
             title.classList.add('due');
         }
 

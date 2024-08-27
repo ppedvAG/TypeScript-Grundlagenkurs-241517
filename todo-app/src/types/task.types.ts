@@ -6,11 +6,11 @@ export type InputType = (typeof inputTypes)[number];
 
 export type Priority = 'important' | 'default' | 'low';
 export type Task = {
-    id: number;
+    id: string;
     title: string;
     completed: boolean;
     priority: Priority;
     userId: number;
-    dueDate: Date | null;
+    dueDate?: Date;
     labels?: string[];
 };
